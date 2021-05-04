@@ -1,0 +1,2 @@
+nnoremap ,t :TagbarToggle<CR>
+
