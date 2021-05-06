@@ -11,6 +11,7 @@ endif
 " ===
 " === Editor bebavior
 " ===
+set encoding=UTF-8
 " set exrc
 " set secure
 set number
@@ -107,14 +108,14 @@ let mapleader=" "
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader>w :w<CR>
+" Source & PlugInstall
+nnoremap <leader>ww :w<CR>:source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>W :PlugInstall<cr>
 
 " Open the vimrc file anytime
 nnoremap <Leader>rc :e ~/.config/nvim/init.vim<CR>
 " noremap <LEADER>rv :e .nvimrc<CR>
 
-" Source & PlugInstall
-nnoremap <leader>ww :w<CR>:source ~/.config/nvim/init.vim<cr>
-nnoremap <leader>W :PlugInstall<cr>
 " Make the vimrc effective immediately
 "autocmd BufReadPost $MYVIMRC source $MYVIMRC
 
@@ -206,16 +207,18 @@ map <F6> :setlocal spell! spelllang=en_us<CR>
 " Switch buffer
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> [n :bnext<CR>
-" Use ctrl+h/j/k/l switch window
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+
+" Use ctrl + h/j/k/l to switch window
+" noremap <C-h> <C-w>h
+" noremap <C-j> <C-w>j
+" noremap <C-k> <C-w>k
+" noremap <C-l> <C-w>l
 
 " Sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
+
 " json Format
-com! FormatJSON %!python3 -m json.tool
+command! FormatJSON %!python3 -m json.tool
 
 
 " Specify a directory for plugins
@@ -288,20 +291,27 @@ Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" NERDTree
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 Plug 'Yggdroot/indentLine'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kien/rainbow_parentheses.vim'
 
-Plug 'scrooloose/nerdtree'
-
-" ctrlp
+" CtrlP
 Plug 'kien/ctrlp.vim'
 
 " easymotion
 Plug 'easymotion/vim-easymotion'
+thenicegirl
+" Vim Tmux Navigator
+" Plug 'christoomey/vim-tmux-navigator' " <C-h> <C-j> <C-k> <C-l> <C-\>
 
-" surround
-Plug 'tpope/vim-surround'
+" Surround
+Plug 'tpope/vim-surround' " ys(you surround) {motion} {inner/around} {char}
 Plug 'tpope/vim-repeat'
 
 Plug 'mattn/emmet-vim'
@@ -345,9 +355,13 @@ Plug 'preservim/tagbar'
 Plug 'lfv89/vim-interestingwords'
 Plug 'sbdchd/neoformat'
 Plug 'dense-analysis/ale'
+
+" Comment
 Plug 'tpope/vim-commentary'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-fugitive'
+
+" Git
+Plug 'tpope/vim-fugitive' " :Git / :G
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 
